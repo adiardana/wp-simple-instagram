@@ -1,0 +1,39 @@
+.ig-pict-wrapper{
+    background-color: #fafafa;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 1px solid #dbdbdb;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+.ig-pict-wrapper img{
+    display: block;
+}
+.ig-table{
+    background-color: #fff;
+    -webkit-box-shadow: 5px 5px 10px -5px #ABABAB;
+    box-shadow: 5px 5px 10px -5px #ABABAB;
+}
+.ig-table th,
+.ig-table td{
+    padding: 15px;
+}
+.ig-table p{
+    padding: 5px 0px 5px 15px;
+    margin: 0;
+}
+#logout-ig{
+    cursor: pointer;
+}
+#logout-ig:hover{
+    text-decoration: underline;
+}
+input[name="sig_token"],
+input[name="sig_key"],
+input[name="sig_secret"]{
+    width: 400px;
+}
+.hide-login-el .restricted-el{
+    display: none;
+}

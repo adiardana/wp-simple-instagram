@@ -1,0 +1,12 @@
+{
+    "name": "adi.ardana/simple-instagram",
+    "require": {
+        "cosenary/instagram": "^2.3"
+    },
+    "authors": [
+        {
+            "name": "Adi Ardana",
+            "email": "adhixz@gmail.com"
+        }
+    ]
+}
