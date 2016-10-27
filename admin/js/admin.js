@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
         $('#sig-wrap').addClass('hide-login-el');
     }
 
-    $('#logout-ig').on('click', function(event) {
+    $('#logout-ig,.logout-ig').on('click', function(event) {
         event.preventDefault();
         
         var r = confirm("Are you sure to revoke access to this account?");

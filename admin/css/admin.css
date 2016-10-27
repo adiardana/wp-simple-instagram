@@ -4,11 +4,53 @@
     -webkit-border-radius: 50%;
     border: 1px solid #dbdbdb;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: hidden !important;
     position: relative;
+}
+.ig-pict-wrapper .logout{
+    position: absolute;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+    background-color: #eeeeee;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -ms-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+    opacity: 0;
+    z-index: 3;
+    -webkit-box-shadow: 5px 5px 10px -5px #ABABAB;
+    box-shadow: 5px 5px 10px -5px #ABABAB;
+}
+.ig-pict-wrapper:hover img{
+    opacity: .5;
+}
+.ig-pict-wrapper:hover .logout{
+    opacity: 1;
+}
+.ig-pict-wrapper .logout span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #333;
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+    margin-left: -15px;
+    margin-top: -15px;
 }
 .ig-pict-wrapper img{
     display: block;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    overflow: hidden;
 }
 .ig-table{
     background-color: #fff;
@@ -22,6 +64,12 @@
 .ig-table p{
     padding: 5px 0px 5px 15px;
     margin: 0;
+}
+.button.sig-login-button{
+    background-image: url(../images/ig.png) !important;
+    background-repeat: no-repeat !important;
+    background-position: 5px center !important;
+    padding-left: 26px !important;
 }
 #logout-ig{
     cursor: pointer;

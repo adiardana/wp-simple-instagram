@@ -5,7 +5,7 @@
     <table class="form-table restricted-el">
         <tr valign="top">
             <th scope="row">
-                <a class="button" href="<?php echo $instagram->getLoginUrl(array('basic','public_content'));?>">Login with Instagram</a>
+                <a class="button sig-login-button" href="<?php echo $instagram->getLoginUrl(array('basic','public_content'));?>"><span></span>Login with Instagram</a>
             </th>
         </tr>
     </table>
@@ -14,11 +14,14 @@
         if ($user_data) {
             $website = $user_data->website;
             ?>
-            <p><strong>Your Account</strong></p>
-            <table class="ig-table">
+            <p class="restricted-el"><strong>Your Account</strong></p>
+            <table class="ig-table restricted-el">
                 <tr valign="top">
                     <th scope="row">
                         <div class="ig-pict-wrapper">
+                            <div class="logout logout-ig">
+                                <span class="dashicons dashicons-no-alt"></span>
+                            </div>
                             <img src="<?= $user_data->profile_picture; ?>" alt="<?= $user_data->full_name;?>">
                         </div>
                     </th>
@@ -34,7 +37,7 @@
             <?php
         }
     } ?>
-    
+
     <form id="ig-form" method="post" action="options.php">
         <?php
         settings_fields( 'sig-opt' );
@@ -100,9 +103,9 @@
             $data = $data->data;
 
             if ($data) {
-                echo '<h2>Your latest post</h2>';
+                echo '<h2 class="restricted-el">Your latest post</h2>';
                 
-                echo '<div>';
+                echo '<div class="restricted-el">';
                 foreach ($data as $key => $ig) {
                     $caption = '';
                     if (isset($ig->caption->text)) {
