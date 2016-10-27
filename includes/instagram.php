@@ -47,7 +47,26 @@ class SimpleInstagram
 
     public function adminMenu()
     {
-        add_submenu_page( 'plugins.php', $this->plugin_name, $this->plugin_name, 'manage_options', $this->plugin_slug, array($this, 'adminPage') );
+        add_menu_page( 
+            $this->plugin_name,
+            $this->plugin_name, 
+            'manage_options', 
+            $this->plugin_slug, 
+            array($this, 'adminPage'), 
+            'dashicons-format-image'
+        );
+
+        add_submenu_page( 
+            $this->plugin_slug,
+            __('Shortcode Options'),
+            __('Shortcode Options'),
+            'manage_options',
+            'sig_embed',
+            array($this, 'adminPageEmbed')
+        );
+
+        // add options page
+        // add_options_page( $page_title, $menu_title, $capability, $menu_slug, $function );
     }
 
     public function adminPage()
@@ -87,5 +106,10 @@ class SimpleInstagram
         }
 
         include('admin-page.php');
+    }
+
+    public function adminPageEmbed()
+    {
+        include('admin-shortcode.php');
     }
 }
