@@ -5,7 +5,7 @@ Description: Simple Instagram
 Plugin URI: http://adiardana.github.io
 Author: Adi Ardana
 Author URI: http://adiardana.github.io
-Version: 1.0
+Version: 2.0
 License: GPL2
 Text Domain: simple-instagram
 Domain Path: Domain Path
@@ -35,6 +35,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define('SIG_FILE', plugin_dir_path( __FILE__ ));
 define('SIG_URL', plugin_dir_url( __FILE__ ));
+define('SIG_NAME', 'Simple Instagram');
+define('SIG_SLUG', 'simple-ig');
 
 function activate_simple_instagram()
 {
@@ -53,7 +55,7 @@ function deactivate_simple_instagram()
 register_activation_hook( __FILE__, 'activate_simple_instagram' );
 register_deactivation_hook( __FILE__, 'deactivate_simple_instagram' );
 
-require_once SIG_FILE.'vendor/autoload.php';
-require_once SIG_FILE.'includes/instagram.php';
+require SIG_FILE.'vendor/autoload.php';
+require SIG_FILE.'includes/instagram.php';
 
 $ig = new SimpleInstagram();

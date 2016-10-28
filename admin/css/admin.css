@@ -78,7 +78,7 @@
     text-decoration: underline;
 }
 input[name="sig_token"],
-input[name="sig_key"],
+input[name="sig_id"],
 input[name="sig_secret"]{
     width: 400px;
 }
