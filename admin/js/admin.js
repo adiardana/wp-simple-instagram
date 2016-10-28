@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-    if ( $('input[name="sig_key"]').val() == '' || $('input[name="sig_secret"]').val() == '' ) {
+    if ( $('input[name="sig_id"]').val() == '' || $('input[name="sig_secret"]').val() == '' ) {
         $('#sig-wrap').addClass('hide-login-el');
     }
 
@@ -9,8 +9,7 @@ jQuery(document).ready(function($) {
         
         var r = confirm("Are you sure to revoke access to this account?");
         if (r == true) {
-            $('textarea[name="sig_userdata"]').val('');
-            $('input[name="sig_token"]').val('');
+            $('textarea[name="sig_userdata"],input[name="sig_token"],input[name="sig_user_id"]').val('');
             $('#submit').click();
         }
     });
