@@ -34,6 +34,13 @@
         </tbody>
     </table>
     <hr>
-    <h2>Issue or Feature Request</h2>
-    <p>Click <a href="mailto:adhixz@gmail.com" target="_blank">here</a> if you found an issue or if you have an idea for the plugin.</p>
+    <h2>Support</h2>
+    <p>if you like this plugin please consider to support us using PayPal, link below</p>
+    <p><a target="_blank" class="button button-primary" href="https://www.paypal.me/adiardana">PayPal</a></p>
+    <h2>Feedback</h2>
+    <p>If you found an issue, or you have an idea for the plugin please contact us via email or post the issue on github</p>
+    <p>
+        <a href="mailto:adhixz@gmail.com" target="_blank" class="button">Email</a>
+        <a href="https://github.com/adiardana/wp-simple-instagram" target="_blank" class="button">Github</a>
+    </p>
 </div>
