@@ -10,8 +10,8 @@
         </thead>
         <tbody>
             <tr>
-                <td></td>
-                <td></td>
+                <td>id</td>
+                <td>[sig id="YOUR_ID"]</td>
             </tr>
         </tbody>
     </table>

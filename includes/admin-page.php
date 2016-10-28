@@ -1,11 +1,11 @@
 <div id="sig-wrap" class="wrap">
     <h2><?= $this->plugin_name; ?></h2>
     
-    <?php if (!$token) { ?>
+    <?php if (!$this->token) { ?>
     <table class="form-table restricted-el">
         <tr valign="top">
             <th scope="row">
-                <a class="button sig-login-button" href="<?php echo $instagram->getLoginUrl(array('basic','public_content'));?>"><span></span>Login with Instagram</a>
+                <a class="button sig-login-button" href="<?php echo $this->instagram->getLoginUrl(array('basic','public_content'));?>"><span></span>Login with Instagram</a>
             </th>
         </tr>
     </table>
@@ -43,9 +43,9 @@
         settings_fields( 'sig-opt' );
         do_settings_sections( 'sig-opt' );
 
-        if (!$token) {
+        if (!$this->token) {
             if (isset($data->access_token)) {
-                $token = $data->access_token;
+                $this->token = $data->access_token;
             }
         }
         $ig_user_id = esc_attr( get_option('sig_id') );
@@ -74,7 +74,7 @@
             <tr class="restricted-el" valign="top">
                 <th scope="row">Account Token</th>
                 <td>
-                    <input type="text" name="sig_token" value="<?php echo $token; ?>" readonly />
+                    <input type="text" name="sig_token" value="<?php echo $this->token; ?>" readonly />
                 </td>
             </tr>
 
@@ -90,12 +90,12 @@
     
     <?php
 
-    if ($token) {
+    if ($this->token) {
         $query = http_build_query(array(
-            'access_token' => $token,
+            'access_token' => $this->token,
             'count' => 6
         ));
-        $url = 'https://api.instagram.com/v1/users/'.$ig_user_id.'/media/recent/?'.$query;
+        $url = $this->endpoint.'users/'.$ig_user_id.'/media/recent/?'.$query;
         
         $request = wp_remote_get( $url );
         if ( isset($request['response']['code']) && $request['response']['code'] == 200 ) {
