@@ -13,12 +13,12 @@ class SimpleInstagram
     protected $endpoint;
 
     public $instagram;
-    
+
     function __construct()
     {
         $this->client_id     = get_option( 'sig_id', '' );
         $this->client_secret = get_option( 'sig_secret', '' );
-        $this->redirect_url  = admin_url( 'admin.php?page='.SIG_SLUG );
+        $this->redirect_url  = admin_url( 'plugins.php?page='.SIG_SLUG );
 
         $this->instagram = new Instagram(array(
             'apiKey'      => $this->client_id,
@@ -56,9 +56,8 @@ class SimpleInstagram
 
     public function adminMenu()
     {
-        add_menu_page( SIG_NAME, SIG_NAME, 'manage_options', SIG_SLUG, array($this, 'adminPage'), 'dashicons-format-image');
+        add_submenu_page( 'plugins.php', SIG_NAME, SIG_NAME, 'manage_options', SIG_SLUG, array($this, 'adminPage') );
 
-        add_submenu_page( SIG_SLUG, __('Shortcode Options'), __('Shortcode Options'), 'manage_options', 'sig_embed', array($this, 'adminPageEmbed') );
     }
 
     public function adminPage()
@@ -70,7 +69,7 @@ class SimpleInstagram
 
         if ($this->client_id || $this->client_secret || $this->redirect_url) {
             if (!$this->token) {
-                $login_url = $this->instagram->getLoginUrl(array('basic', 'public_content'));
+                $login_url = $this->instagram->getLoginUrl(array('basic'));
 
                 if (isset($_GET['code'])) {
                     $code = $_GET['code'];
@@ -89,18 +88,17 @@ class SimpleInstagram
             }
         }
         include('admin-page.php');
-    }
-
-    public function adminPageEmbed()
-    {
-        
+        if (!$login_url) {
+            include('admin-shortcode.php');
+        }
     }
 
     public function registerShortcode($atts, $content = '')
     {
         extract(shortcode_atts( array(
             'count'   => 6,
-            'heading' => 'Your latest post',
+            'class'    => '',
+            'heading' => '',
             'size'    => 'low_resolution' //low_resolution, thumbnail, standard_resolution
         ), $atts));
 
@@ -109,14 +107,18 @@ class SimpleInstagram
         $userFeeds = $this->instagram->getUserMedia( 'self', $count );
 
         if ($userFeeds->data) {
-            echo '<h2 class="restricted-el">'.$heading.'</h2>';
+            if ($class) { echo '<div class="'.$class.'">'; }
+
+            if ($heading) {
+                echo '<h2 class="restricted-el">'.$heading.'</h2>';
+            }
             foreach ($userFeeds->data as $key => $ig) {
                 $caption = '';
                 if (isset($ig->caption->text)) {
                     $caption = $ig->caption->text;
                 }
                 ?>
-                <span>
+                <span <?= $ig->type === 'video' ? 'class="video"':''; ?>>
                     <a href="<?= $ig->link; ?>" target="_blank" title="<?= $caption; ?>">
                         <img src="<?= $ig->images->{$size}->url;?>" alt="<?= $caption; ?>">
                     </a>
@@ -126,6 +128,8 @@ class SimpleInstagram
                 // print_r($ig);
                 // echo '</pre>';
             }
+
+            if ($class) { echo '</div>'; }
         }
     }
 }
