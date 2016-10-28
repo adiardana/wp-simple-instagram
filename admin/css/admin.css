@@ -85,3 +85,10 @@ input[name="sig_secret"]{
 .hide-login-el .restricted-el{
     display: none;
 }
+
+.shortcode-table th,
+.shortcode-table td{
+    border: 1px solid #333;
+    text-align: left;
+    padding: 5px 10px;
+}
