@@ -104,45 +104,28 @@ class SimpleInstagram
             'size'    => 'low_resolution' //low_resolution, thumbnail, standard_resolution
         ), $atts));
 
-        $sig_user_id = get_option( 'sig_user_id' );
+        $this->instagram->setAccessToken( $this->token );
 
-        $query = http_build_query(array(
-            'access_token' => $this->token,
-            'count'        => $count
-        ));
+        $userFeeds = $this->instagram->getUserMedia( 'self', $count );
 
-        $url = $this->endpoint.'users/'.$sig_user_id.'/media/recent?'.$query;
-
-        $request = wp_remote_get( $url );
-
-        if ( isset($request['response']['code']) && $request['response']['code'] == 200 ) {
-            $data = json_decode($request['body']);
-
-            $data = $data->data;
-
-            if ($data) {
-                echo '<h2 class="restricted-el">'.$heading.'</h2>';
-                
-                echo '<div class="restricted-el">';
-                foreach ($data as $key => $ig) {
-                    $caption = '';
-                    if (isset($ig->caption->text)) {
-                        $caption = $ig->caption->text;
-                    }
-                    ?>
-                    <span>
-                        <a href="<?= $ig->link; ?>" target="_blank" title="<?= $caption; ?>">
-                            <img src="<?= $ig->images->{$size}->url;?>" alt="<?= $caption; ?>">
-                        </a>
-                    </span>
-                    <?php
-                    // echo '<pre>';
-                    // print_r($ig);
-                    // echo '</pre>';
+        if ($userFeeds->data) {
+            echo '<h2 class="restricted-el">'.$heading.'</h2>';
+            foreach ($userFeeds->data as $key => $ig) {
+                $caption = '';
+                if (isset($ig->caption->text)) {
+                    $caption = $ig->caption->text;
                 }
-                echo '</div>';
+                ?>
+                <span>
+                    <a href="<?= $ig->link; ?>" target="_blank" title="<?= $caption; ?>">
+                        <img src="<?= $ig->images->{$size}->url;?>" alt="<?= $caption; ?>">
+                    </a>
+                </span>
+                <?php
+                // echo '<pre>';
+                // print_r($ig);
+                // echo '</pre>';
             }
         }
-
     }
 }
