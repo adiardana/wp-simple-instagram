@@ -1,6 +1,6 @@
 <div id="sig-wrap" class="wrap">
     <h2><?= SIG_NAME; ?></h2>
-    
+
     <?php if (!$login_url) {
     $user_data = unserialize( base64_decode( $sig_userdata ) );
     ?>
@@ -66,6 +66,13 @@
                 <th scope="row">Account ID</th>
                 <td>
                     <input type="text" name="sig_user_id" value="<?php echo $sig_user_id; ?>" readonly />
+                </td>
+            </tr>
+
+            <tr class="restricted-el" valign="top">
+                <th scope="row">Disable build in styles</th>
+                <td>
+                <input type="checkbox" name="sig_disable_styles" value="true" <?= esc_attr( get_option('sig_disable_styles') ) == 'true' ? 'checked':'';?>>
                 </td>
             </tr>
         </table>
