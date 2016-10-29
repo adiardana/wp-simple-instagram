@@ -33,15 +33,24 @@ class SimpleInstagram
 
         add_action( 'admin_menu', array($this, 'adminMenu') );
 
-        add_action( 'admin_enqueue_scripts', array($this, 'enqueueScripts') );
+        add_action( 'admin_enqueue_scripts', array($this, 'adminEnqueueScripts') );
+
+        if (get_option( 'sig_disable_styles' ) !== 'true') {
+            add_action( 'wp_enqueue_scripts', array($this, 'enqueueScripts') );
+        }
 
         add_shortcode( 'sig', array($this, 'registerShortcode') );
     }
 
+    public function adminEnqueueScripts()
+    {
+        wp_enqueue_script( 'sig_js', SIG_URL.'assets/js/admin.js', false, '1.0.0' );
+        wp_enqueue_style( 'sig_css', SIG_URL.'assets/css/admin.css', false, '1.0.0' );
+    }
+
     public function enqueueScripts()
     {
-        wp_enqueue_script( 'sig_js', SIG_URL.'admin/js/admin.js', false, '1.0.0' );
-        wp_enqueue_style( 'sig_css', SIG_URL.'admin/css/admin.css', false, '1.0.0' );
+        wp_enqueue_style( 'sig_fe_css', SIG_URL.'assets/css/sig.css', false, '1.0.0' );
     }
 
     public function adminSettings()
@@ -52,6 +61,8 @@ class SimpleInstagram
         register_setting( 'sig-opt', 'sig_token' );
         register_setting( 'sig-opt', 'sig_user_id' );
         register_setting( 'sig-opt', 'sig_userdata' );
+
+        register_setting( 'sig-opt', 'sig_disable_styles' );
     }
 
     public function adminMenu()
@@ -118,8 +129,11 @@ class SimpleInstagram
                     $caption = $ig->caption->text;
                 }
                 ?>
-                <span <?= $ig->type === 'video' ? 'class="video"':''; ?>>
+                <span class="sig-item <?= $ig->type === 'video' ? 'video':''; ?>">
                     <a href="<?= $ig->link; ?>" target="_blank" title="<?= $caption; ?>">
+                        <?php if ($ig->type === 'video') { ?>
+                            <i class="play"></i>
+                        <?php } ?>
                         <img src="<?= $ig->images->{$size}->url;?>" alt="<?= $caption; ?>">
                     </a>
                 </span>
