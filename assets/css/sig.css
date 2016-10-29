@@ -1,0 +1,28 @@
+.sig-item {
+  display: inline-block;
+  padding: 15px;
+}
+.sig-item a{
+  display: block;
+  position: relative;
+}
+.sig-item a:hover .play{
+  opacity: 1;
+}
+.sig-item a .play{
+  position: absolute;
+  width: 61px;
+  height: 65px;
+  top: 50%;
+  left: 50%;
+  margin-top: -32.5px;
+  margin-left: -30.5px;
+  background-image: url(../images/assets.png) !important;
+  background-repeat: no-repeat !important;
+  background-position: -20px 0px;
+  opacity: 0.5;
+  -webkit-transition: opacity .2s ease-out;
+  transition: opacity .2s ease-out;
+  -webkit-transition-delay: .1s;
+  transition-delay: .1s;
+}

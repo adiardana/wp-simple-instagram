@@ -65,11 +65,19 @@
     padding: 5px 0px 5px 15px;
     margin: 0;
 }
-.button.sig-login-button{
-    background-image: url(../images/ig.png) !important;
+.button.sig-login-button span{
+    background-image: url(../images/assets.png) !important;
     background-repeat: no-repeat !important;
-    background-position: 5px center !important;
-    padding-left: 26px !important;
+    background-position: 0px 0px;
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    margin-right: 5px;
+    -moz-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    -o-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    transform: translateY(4px);
 }
 #logout-ig{
     cursor: pointer;
