@@ -10,7 +10,6 @@ class SimpleInstagram
     protected $redirect_url;
 
     protected $token;
-    protected $endpoint;
 
     public $instagram;
 
@@ -27,7 +26,6 @@ class SimpleInstagram
         ));
 
         $this->token         = get_option('sig_token');
-        $this->endpoint      = 'https://api.instagram.com/v1/';
 
         add_action( 'admin_init', array($this, 'adminSettings') );
 
@@ -71,6 +69,15 @@ class SimpleInstagram
 
     }
 
+    public function save_notice()
+    {
+    ?>
+    <div class="notice notice-success is-dismissible">
+        <p><?php _e( 'Token sucesfully generated, please save by pressing the <strong>Save Changes</strong> button!' ); ?></p>
+    </div>
+    <?php
+    }
+
     public function adminPage()
     {
         $login_url = '';
@@ -78,11 +85,16 @@ class SimpleInstagram
         $sig_userdata = get_option( 'sig_userdata', '' );
         $sig_user_id = get_option( 'sig_user_id', '' );
 
+        $status = false;
+
         if ($this->client_id || $this->client_secret || $this->redirect_url) {
             if (!$this->token) {
                 $login_url = $this->instagram->getLoginUrl(array('basic'));
 
                 if (isset($_GET['code'])) {
+
+                    $status = true;
+
                     $code = $_GET['code'];
 
                     $data = $this->instagram->getOAuthToken($code);
@@ -117,7 +129,7 @@ class SimpleInstagram
 
         $userFeeds = $this->instagram->getUserMedia( 'self', $count );
 
-        if ($userFeeds->data) {
+        if (isset( $userFeeds->data )) {
             if ($class) { echo '<div class="'.$class.'">'; }
 
             if ($heading) {

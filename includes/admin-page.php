@@ -1,6 +1,8 @@
 <div id="sig-wrap" class="wrap">
     <h2><?= SIG_NAME; ?></h2>
 
+    <?php if ($status) { $this->save_notice(); }?>
+
     <?php if (!$login_url) {
     $user_data = unserialize( base64_decode( $sig_userdata ) );
     ?>
