@@ -3,7 +3,7 @@ Wordpress Simple Instagram Plugins
 
 ----------
 
-####Shortcode : [sig count="5" size="thumbnail" class="ig" heading="Your Heading"]
+####Shortcode : [sig count="5" size="thumbnail" class="ig" heading="Your Heading" disable_styles="true or false"]
 
 
 <table class="shortcode-table">
@@ -34,6 +34,10 @@ Wordpress Simple Instagram Plugins
        <tr>
            <td>heading</td>
            <td>Heading of the gallery (not mandatory)</td>
+       </tr>
+       <tr>
+           <td>disable_styles</td>
+           <td>Disable built in styles for current shortcode</td>
        </tr>
    </tbody>
 </table>
