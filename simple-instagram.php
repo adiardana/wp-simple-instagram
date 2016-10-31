@@ -57,5 +57,6 @@ register_deactivation_hook( __FILE__, 'deactivate_simple_instagram' );
 
 require SIG_FILE.'vendor/autoload.php';
 require SIG_FILE.'includes/instagram.php';
+require SIG_FILE.'includes/instagram-widget.php';
 
 $ig = new SimpleInstagram();

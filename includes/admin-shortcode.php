@@ -12,7 +12,7 @@
         <tbody>
             <tr>
                 <td>count</td>
-                <td>number of media to show</td>
+                <td>number of media to show (MAX 20)</td>
             </tr>
             <tr>
                 <td>class</td>

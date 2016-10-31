@@ -26,3 +26,17 @@
   -webkit-transition-delay: .1s;
   transition-delay: .1s;
 }
+
+.sig-widget .sig-item {
+  padding: 5px;
+  max-width: 140px;
+  max-height: 140px;
+}
+
+.sig-widget .sig-item a .play{
+  width: 29px;
+  height: 31px;
+  margin-top: -15.5px;
+  margin-left: -14.5px;
+  background-position: -82px 0px;
+}

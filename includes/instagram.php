@@ -69,7 +69,7 @@ class SimpleInstagram
 
     }
 
-    public function save_notice()
+    public function saveNotice()
     {
     ?>
     <div class="notice notice-success is-dismissible">
@@ -119,10 +119,11 @@ class SimpleInstagram
     public function registerShortcode($atts, $content = '')
     {
         extract(shortcode_atts( array(
-            'count'   => 6,
-            'class'    => '',
-            'heading' => '',
-            'size'    => 'low_resolution' //low_resolution, thumbnail, standard_resolution
+            'count'          => 6,
+            'class'          => '',
+            'heading'        => '',
+            'size'           => 'low_resolution', //low_resolution, thumbnail, standard_resolution
+            'disable_styles' => ''
         ), $atts));
 
         $this->instagram->setAccessToken( $this->token );
@@ -141,7 +142,7 @@ class SimpleInstagram
                     $caption = $ig->caption->text;
                 }
                 ?>
-                <span class="sig-item <?= $ig->type === 'video' ? 'video':''; ?>">
+                <span class="<?php echo($disable_styles !== 'true'? 'sig-item':''); ?> <?= $ig->type === 'video' ? 'video':''; ?>">
                     <a href="<?= $ig->link; ?>" target="_blank" title="<?= $caption; ?>">
                         <?php if ($ig->type === 'video') { ?>
                             <i class="play"></i>

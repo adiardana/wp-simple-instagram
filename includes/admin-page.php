@@ -1,7 +1,7 @@
 <div id="sig-wrap" class="wrap">
     <h2><?= SIG_NAME; ?></h2>
 
-    <?php if ($status) { $this->save_notice(); }?>
+    <?php if ($status) { $this->saveNotice(); }?>
 
     <?php if (!$login_url) {
     $user_data = unserialize( base64_decode( $sig_userdata ) );
@@ -72,7 +72,7 @@
             </tr>
 
             <tr class="restricted-el" valign="top">
-                <th scope="row">Disable build in styles</th>
+                <th scope="row">Disable build in styles ( Globally )</th>
                 <td>
                 <input type="checkbox" name="sig_disable_styles" value="true" <?= esc_attr( get_option('sig_disable_styles') ) == 'true' ? 'checked':'';?>>
                 </td>
