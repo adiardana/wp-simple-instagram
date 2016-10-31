@@ -1,7 +1,7 @@
 <div class="wrap">
     <h2><?php _e('Shortcode Options'); ?></h2>
 
-    <h3>Shortcode : [sig count="5" size="thumbnail" class="ig" heading="Your Heading"]</h3>
+    <h3>Shortcode : [sig count="5" size="thumbnail" class="ig" heading="Your Heading" disable_styles="true or false"]</h3>
     <table class="shortcode-table">
         <thead>
             <tr>
@@ -30,6 +30,10 @@
             <tr>
                 <td>heading</td>
                 <td>Heading of the gallery (not mandatory)</td>
+            </tr>
+            <tr>
+                <td>disable_styles</td>
+                <td>Disable built in styles for current shortcode</td>
             </tr>
         </tbody>
     </table>
